@@ -4,6 +4,8 @@ const inquirer = require('inquirer');
 
 console.log('Hi, Welcome to Anti-Moderator');
 
+const timeReset = 20; // time in minutes
+
 const choices = [
     {
         name: 'Oshimo',
@@ -13,7 +15,7 @@ const choices = [
         name: 'Brutas',
         value: 'http://93.115.97.149:8080',
     },
-]
+];
 
 inquirer.prompt([
     {
@@ -31,6 +33,11 @@ inquirer.prompt([
 
     socket.on('moderator' + APIKEY, (data) => {
         console.log('Moderator detected');
-        fs.writeFile(filepath, '1', () => {});
+        fs.writeFile(filepath, '1', (err) => {
+            setTimeout(() => {
+                fs.writeFile(filepath, '0', () => {});
+            }, 20 * 60 * 1000);
+        });
+    
     });
 });
