@@ -36,7 +36,7 @@ inquirer.prompt([
         fs.writeFile(filepath, '1', (err) => {
             setTimeout(() => {
                 fs.writeFile(filepath, '0', () => {});
-            }, 20 * 60 * 1000);
+            }, timeReset * 60 * 1000);
         });
     
     });
